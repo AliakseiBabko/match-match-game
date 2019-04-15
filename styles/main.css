@@ -1,0 +1,223 @@
+@font-face {
+	font-family: "Chunkfive";
+	src: url("../fonts/Chunkfive.otf") format("opentype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Oswald";
+	src: url("../fonts/Oswald-Regular.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "NotoMono";
+	src: url("../fonts/NotoMono-Regular.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+/* ------------------- Global Variables ------------------------------ */
+:root {
+    --ModalWidth: 600px;
+    --ModalHeight: 525px;
+}
+/* ------------------- Background ------------------------------------ */
+body, html, .bodyWrapper {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+}
+.bodyWrapper {
+    background: rgb(40, 204, 89) url(../images/background/classy-fabric.png);
+    -webkit-font-smoothing: antialiased;
+}
+/* ------------------- The Name Of The Game -------------------------- */
+h1 {
+    font: 36px "Chunkfive";
+    color: white;
+    /*-webkit-text-stroke: 2px black;*/
+    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    text-align: center;
+    margin: 0;
+    padding-bottom: 3px;
+    background-color: rgba(0,0,0,0.4);
+}
+/* ------------------- Timer and Moves Counter --------------------------------------- */
+.timer{
+    padding: 0px 10px;
+    position: absolute;
+    color:white;
+    top: 9px;
+    right: 20px;
+    font: 26px "NotoMono";
+    font-weight: 1000;
+}
+.moves {
+    padding: 0px 10px;
+    position: absolute;
+    color:white;
+    top: 9px;
+    left: 20px;
+    font: 26px "NotoMono";
+    font-weight: 1000;
+}
+/* ------------------- Game Table----------------------------------- */
+.gameTable {
+    margin-top: 20px;
+}
+.rowOfCards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+figure {
+    position: relative;
+    float: left;
+    width: 140px;
+    height: 200px;
+    margin: 8px;
+    perspective: 600px;
+}
+figure img {
+    height: 100%;
+    transition: all 0.5s linear;
+    transition-property: opacity;
+    display: block;
+    opacity: 1;
+    border-radius: 7px;
+}
+figure[data-show='false'] {
+    pointer-events: none;
+}
+figure[data-show='false'] .back img {
+    opacity: 0;
+}
+.back, .front {
+    position: absolute;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: transform .5s linear 0s;
+    transform-style: preserve-3d;
+}
+.back {
+    transform: rotateY(180deg);
+}
+.front {
+    transform: rotateY(0deg);
+}
+/* ------------------- New Game Modal ------------------------------ */
+.modal {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    width: var(--ModalWidth);
+    height: var(--ModalHeight);
+    top: calc(50% - var(--ModalHeight) / 2);
+    left: calc(50% - var(--ModalWidth) / 2); 
+    background-color: #F5F5F5;
+    border: 1px solid grey;
+    font: 22px "Oswald";
+    text-align: center;
+    border-radius: 5px;
+    filter: drop-shadow(10px 10px 5px rgba(0,0,0,0.4));
+}
+fieldset {
+    border-width: 1px;
+}
+.modalWrapper {
+    margin: 20px;
+}
+.formNewPlayer {
+    display: inline-block;
+    width: 35%;
+}
+.formNewGame {    
+    float: right;
+    margin-right: 10px;
+    width: 60%;
+}
+.form > div {
+    line-height: 20px;
+}
+legend, h4, p {
+    margin: 9px;
+}
+legend {
+    font: 18px "Oswald";
+}
+.modal p {
+    font: 16px "Oswald";
+}
+.closeModal {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+.closeModal:after {
+    content: '';
+    height: 22px;
+    border-left: 2px solid #000;
+    position: absolute;
+    transform: rotate(45deg);
+    left: 14px;
+    top: 5px;
+}
+.closeModal:before {
+    content: '';
+    height: 22px;
+    border-left: 2px solid #000;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 14px;
+    top: 5px;
+}
+.closeModal:hover {    
+    cursor: pointer;
+}
+button[type=button]:hover {
+    color: blue;
+    cursor: pointer;
+}
+button[type=button] {
+    height: 40px;
+    width: 160px;
+    font: 18px "Oswald";
+    margin-top: 9px;
+}
+/* ------------------- Choose difficulty and a deck --------------------- */
+.switch-field {   
+    overflow: hidden;
+}  
+.switch-field input {
+    display: none;
+}  
+.switch-field label {
+    float: left;
+    width: 68px;
+    background-color: #e4e4e4;
+    font-size: 14px;
+    text-align: center;
+    padding: 6px 14px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.switch-field label:hover {
+    cursor: pointer;
+}  
+.switch-field input:checked + label {
+    background-color: rgb(142, 212, 100);
+}
+/* ------------------- Congradulation Modal ----------------------------- */
+.congradulations{
+    display: none;
+    position: absolute;
+    z-index: 5;
+    width: var(--gameModeModalWidth);
+    height: var(--gameModeModalHeight);
+    top: calc (50% - var(--gameModeModalHeight) / 2);
+    left: calc (50% - var(--gameModeModalWidth) / 2);      
+    background-color: #F5F5F5;
+    border: 1px solid grey;
+}

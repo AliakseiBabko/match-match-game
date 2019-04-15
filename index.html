@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Match-Match-Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
+</head>
+<body>
+<div class="bodyWrapper">
+    <h1>Match pairs memory game</h1>
+    <div id="timer" class="timer">00:00:00</div>
+    <div class="moves">moves:<span id="moves">0</span></div> 
+    <div id="gameTable" class="gameTable"></div>
+    <div id="modal" class="modal">
+        <div class="modalWrapper">
+            <div class="rules">
+                <h4>Rules</h4>
+                <p id="rules">You need to match pairs of cards. Turn over one card and then try to find a matching card. The game is over when all the cards have been matched.</p>
+            </div>
+            <div id="closeModal" class="closeModal"></div>
+            <form class="form">
+                <div class="formNewPlayer">
+                    <h4>New Player*</h4>
+                    <fieldset>
+                        <legend>First Name</legend>
+                        <input type="text" placeholder="your first name" id="newPlayerFirstName"/>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Last Name</legend>
+                        <input type="text" placeholder="your last name" id="newPlayerLastName"/>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Email</legend>
+                        <input type="email" placeholder="your email" id="newPlayerEmail"/>
+                    </fieldset>
+                    <p>*Register or leave fields blank and play as anonymus</p>
+                </div>
+                <div id="formNewGame" class="formNewGame">
+                    <h4>New Game</h4>
+                    <fieldset id="gameDifficulty" class="switch-field">
+                        <legend>Game Difficulty</legend>     
+                        <input type="radio" id="easy" value="" name="difficulty" checked/>
+                        <label for="easy">4x3<br>Easy</label>
+                        <input type="radio" id="medium" value="" name="difficulty" />
+                        <label for="medium">6x3<br>Medium</label>
+                        <input type="radio" id="hard" value="" name="difficulty" />
+                        <label for="hard">8x3<br>Hard</label>
+                    </fieldset>
+                    <fieldset id="cardDeck" class="switch-field">
+                        <legend>Card Decks</legend>
+                        <input type="radio" id="firstDeck" value="" name="deck" checked/>
+                        <label for="firstDeck"><img src="./images/cardDecks/oldFrench/1.jpg" height="95"><br>Old French</label>
+                        <input type="radio" id="secondDeck" value="" name="deck" />
+                        <label for="secondDeck"><img src="./images/cardDecks/oldRussian/1.jpg" height="95"><br>Old Russian</label>
+                        <input type="radio" id="thirdDeck" value="" name="deck" />
+                        <label for="thirdDeck"><img src="./images/cardDecks/MayanStyle/1.jpg" height="95"><br>Mayan Style</label>
+                    </fieldset>
+                </div>
+                <button id="startNewGame" type="button">Start Game</button>
+            </form>         
+        </div>   
+    </div>
+    <div id="congradulations" class="modal">
+        <div class="modalWrapper">
+            <div class="congradulations">congradulations!</div>
+            <button id="startNewGame" type="button">Play Again</button>
+        </div>
+    </div>   
+</div>    
+<script src="js/main.js"></script>
+</body>
+</html>
